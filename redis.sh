@@ -1,6 +1,15 @@
 #!/bin/bash
 
-# need su permission
+## Check if redis has already installed
+redis_path=$(which redis-server)
+
+if [ ! -n "$redis_path" ]; then
+  exit 0
+fi
+
+#############################################
+# Need su permission for following
+#############################################
 
 # Install the Build and Test Dependencies
 sudo apt-get update
@@ -38,7 +47,8 @@ sudo mkdir /etc/redis
 sudo cp /tmp/redis-stable/redis.conf /etc/redis
 
 # modify configuration
-
+sudo cp /etc/redis/redis.conf /etc/redis/default.conf 
+sudo cp `dirname $0`/redis/redis.conf /etc/redis
 
 # Create a Redis systemd Unit File
 sudo cp `dirname $0`/redis/redis.service /etc/systemd/system/redis.service
@@ -65,3 +75,5 @@ sudo systemctl status redis
 
 # If all of your tests worked, and you would like to start Redis automatically when your server boots, you can enable the systemd service.
 sudo systemctl enable redis
+
+echo "install done, now you can test redis with redis-cli"

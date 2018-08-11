@@ -4,10 +4,12 @@
 redis_path=$(which redis-server)
 instal_path=$(cd "$(dirname "$0")";pwd)
 
+echo "the install path is "$instal_path
+
 if [ ! -n "$redis_path" ]; then
   echo "here we go"
 else
-  echo "redis has already installed"
+  echo "redis has already installed on "$redis_path
   exit 0
 fi
 

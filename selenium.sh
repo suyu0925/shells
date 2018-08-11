@@ -26,6 +26,8 @@ firefox() {
   tar xzvf geckodriver-v0.21.0-linux64.tar.gz
 
   sudo cp ./geckodriver /usr/local/bin
+
+  geckodriver--version
 }
 
 chromium() {

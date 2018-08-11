@@ -21,6 +21,10 @@ firefox() {
 
   cd /tmp
 
+  if [ -f "geckodriver-v0.21.0-linux64.tar.gz" ]; then
+    rm geckodriver-v0.21.0-linux64.tar.gz
+  fi
+
   wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
 
   tar xzvf geckodriver-v0.21.0-linux64.tar.gz

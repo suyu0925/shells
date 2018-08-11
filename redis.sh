@@ -2,11 +2,19 @@
 
 ## Check if redis has already installed
 redis_path=$(which redis-server)
+instal_path=$(cd "$(dirname "$0")";pwd)
 
 if [ ! -n "$redis_path" ]; then
   echo "here we go"
 else
   echo "redis has already installed"
+  exit 0
+fi
+
+if [ `id -u` -eq 0 ];then
+  echo "has sudo permission"
+else
+  echo "has not sudo permission"
   exit 0
 fi
 
@@ -16,7 +24,7 @@ fi
 
 # Install the Build and Test Dependencies
 sudo apt-get update
-sudo apt-get install build-essential tcl
+sudo apt-get install -y build-essential tcl
 
 # Download, Compile, and Install Redis
 
@@ -51,10 +59,10 @@ sudo cp /tmp/redis-stable/redis.conf /etc/redis
 
 # modify configuration
 sudo cp /etc/redis/redis.conf /etc/redis/default.conf 
-sudo cp `dirname $0`/redis/redis.conf /etc/redis
+sudo cp $instal_path/redis/redis.conf /etc/redis
 
 # Create a Redis systemd Unit File
-sudo cp `dirname $0`/redis/redis.service /etc/systemd/system/redis.service
+sudo cp $instal_path/redis/redis.service /etc/systemd/system/redis.service
 
 ## Create the Redis User, Group and Directories
 

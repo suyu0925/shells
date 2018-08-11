@@ -52,6 +52,9 @@ install_redis() {
   sudo make install
 }
 
+#############################################
+# Configure Redis
+#############################################
 configure_redis() {
   ## Configure Redis
 
@@ -64,6 +67,9 @@ configure_redis() {
   sudo cp $instal_path/redis/redis.conf /etc/redis
 }
 
+#############################################
+# Create a Redis systemd Unit File
+#############################################
 start_redis() {
   # Create a Redis systemd Unit File
   sudo cp $instal_path/redis/redis.service /etc/systemd/system/redis.service

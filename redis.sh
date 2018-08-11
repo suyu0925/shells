@@ -4,6 +4,9 @@
 redis_path=$(which redis-server)
 
 if [ ! -n "$redis_path" ]; then
+  echo "here we go"
+else
+  echo "redis has already installed"
   exit 0
 fi
 

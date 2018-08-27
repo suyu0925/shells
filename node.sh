@@ -20,3 +20,8 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 
 yarn --version
+
+# global install pm2
+sudo yarn global add pm2 -d
+
+which pm2

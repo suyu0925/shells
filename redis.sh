@@ -1,15 +1,18 @@
 #!/bin/bash
 
-## Check if redis has already installed
-redis_path=$(which redis-server)
-instal_path=$(cd "$(dirname "$0")";pwd)
-
+#############################################
+# superuser permission guarder
+#############################################
 if [ `id -u` -eq 0 ];then
   echo "has sudo permission"
 else
   echo "has not sudo permission"
   exit 0
 fi
+
+## Check if redis has already installed
+redis_path=$(which redis-server)
+instal_path=$(cd "$(dirname "$0")";pwd)
 
 #############################################
 # build and install redis

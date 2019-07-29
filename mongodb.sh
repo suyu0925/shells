@@ -76,3 +76,6 @@ sleep 3s
 
 # Verify
 tail /var/log/mongodb/mongod.log
+
+# Make mongodb run automatically at startup
+sudo systemctl enable mongod
